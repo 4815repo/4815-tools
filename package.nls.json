@@ -1,0 +1,18 @@
+{
+  "4815-tools.flow-build.title": "4815 Tools: Flow (Build)",
+  "4815-tools.flow-rebuild.title": "4815 Tools: Flow (Rebuild)",
+  "4815-tools.backup-changes.title": "4815 Tools: Backup Changes",
+  "4815-tools.pull-changes.title": "4815 Tools: Pull Changes",
+  "4815-tools.open-project.title": "4815 Tools: Open Project",
+  "4815-tools.clone-project.title": "4815 Tools: Clone Project",
+  "4815-tools.create-project.title": "4815 Tools: Create Project",
+  "4815-tools.setup-project-and-remote.title": "4815 Tools: Setup Project & Remote",
+  "4815-tools.setup-bitbucket-configuration.title": "4815 Tools: Setup Bitbucket Configuration",
+  "4815-tools-build-actions.title": "Build Actions",
+  "4815-tools-build-actions.contents1": "Build the project and automatically download the program when a VEX product is connected.\nOnly recompile the changed source files.\n[Start Flow (Build)](command:4815-tools.flow-build)\nRecompile all source files. Try this if \"Build\" doesn't work.\n[Start Flow (Rebuild)](command:4815-tools.flow-rebuild)",
+  "4815-tools-build-actions.contents2": "This is not a VEXcode project. Please open a VEXcode project to use build actions.",
+  "4815-tools-source-control-quick-actions.title": "Source Control Quick Actions",
+  "4815-tools-source-control-quick-actions.contents": "Create a commit and push to the remote server\n[Backup Changes](command:4815-tools.backup-changes)\nPull commits from the remote server.\n[Pull Changes](command:4815-tools.pull-changes)",
+  "4815-tools-project-management.title": "Project Management",
+  "4815-tools-project-management.contents": "Open a 4815 project from the project home directory.\n[Open Project](command:4815-tools.open-project)\nClone a project from the remote server.\n[Clone Project](command:4815-tools.clone-project)\nCreate a new project from a template and push to the remote server. (optional)\n[Create Project](command:4815-tools.create-project)\nLink the local project to the remote server and create one if needed.\n[Setup Project & Remote](command:4815-tools.setup-project-and-remote)"
+}

@@ -1,0 +1,18 @@
+{
+  "4815-tools.flow-build.title": "4815 Tools: 流程（Build）",
+  "4815-tools.flow-rebuild.title": "4815 Tools: 流程（Rebuild）",
+  "4815-tools.backup-changes.title": "4815 Tools: 備份更改",
+  "4815-tools.pull-changes.title": "4815 Tools: 拉取更改",
+  "4815-tools.open-project.title": "4815 Tools: 開啟本地專案",
+  "4815-tools.clone-project.title": "4815 Tools: 複製（clone）專案到本地",
+  "4815-tools.create-project.title": "4815 Tools: 建立專案",
+  "4815-tools.setup-project-and-remote.title": "4815 Tools: 設定專案與遠端連接配置",
+  "4815-tools.setup-bitbucket-configuration.title": "4815 Tools: 設定Bitbucket配置",
+  "4815-tools-build-actions.title": "建置動作",
+  "4815-tools-build-actions.contents1": "執行Build並在連接VEX產品時自動下載程式。\n僅重新編譯已更改的檔案。\n[啟動流程 (Build)](command:4815-tools.flow-build)\n重新編譯所有檔案。嘗試此選項如果「Build」無法正常工作。\n[啟動流程 (Rebuild)](command:4815-tools.flow-rebuild)",
+  "4815-tools-build-actions.contents2": "這不是VEXcode專案。請開啟VEXcode專案以使用建置動作。",
+  "4815-tools-source-control-quick-actions.title": "版本控制動作",
+  "4815-tools-source-control-quick-actions.contents": "建立提交（commit）並推送到遠端伺服器\n[備份更改](command:4815-tools.backup-changes)\n從遠端伺服器拉取提交（commit）。\n[拉取更改](command:4815-tools.pull-changes)",
+  "4815-tools-project-management.title": "專案管理",
+  "4815-tools-project-management.contents": "從專案主目錄開啟4815專案。\n[開啟本地專案](command:4815-tools.open-project)\n從遠端伺服器複製（clone）專案。\n[複製專案到本地](command:4815-tools.clone-project)\n從範本建立一個新專案並推送到遠端伺服器（可選）\n[建立專案](command:4815-tools.create-project)\n連接本地專案到遠端伺服器並在需要時建立一個遠端專案。\n[設定專案與遠端連接配置](command:4815-tools.setup-project-and-remote)"
+}

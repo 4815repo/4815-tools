@@ -1,0 +1,52 @@
+name: Publish release
+
+on:
+  push:
+    branches: [main]
+    paths: ["package.json"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # - name: start X server
+      #   run: |
+      #     Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+      #     echo "DISPLAY=:99" >> $GITHUB_ENV
+      - uses: actions/checkout@v3
+      - name: Detect version
+        uses: EndBug/version-check@v1
+        id: check
+        with:
+          diff-search: true # seach the diff content with version
+      - name: Install dependencies
+        if: steps.check.outputs.changed == 'true'
+        run: npm ci
+      # - name: Run tests
+      #   if: steps.check.outputs.changed == 'true'
+      #   run: npm test
+      - name: Package
+        if: steps.check.outputs.changed == 'true'
+        run: npm run package
+      - name: Publish to GitHub
+        uses: "marvinpinto/action-automatic-releases@latest"
+        if: steps.check.outputs.changed == 'true'
+        with:
+          # Also set Srttings -> Actions -> General -> Workflow permissions to "Read and write permissions"
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          automatic_release_tag: "${{ steps.check.outputs.version }}"
+          title: "Release ${{ steps.check.outputs.version }}"
+          files: |
+            LICENSE
+            *.vsix
+      # - name: publish to VSCode Marketplace
+      #   if: steps.check.outputs.changed == 'true'
+      #   # The token will expire. Regenerate it at:
+      #   # https://llvm-vs-code-extensions.visualstudio.com/_usersSettings/tokens.
+      #   run: npm run publish -- -p "${{ secrets.VSCODE_MARKETPLACE_TOKEN }}"
+      # - name: publish to OpenVSX
+      #   if: steps.check.outputs.changed == 'true'
+      #   # The token will expire. Regenerate it at:
+      #   # https://open-vsx.org/user-settings/tokens
+      #   run: npm run publish-openvsx -- -p "${{ secrets.OPENVSX_TOKEN }}"
