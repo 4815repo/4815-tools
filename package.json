@@ -202,8 +202,10 @@
     "eslint": "^8.50.0",
     "glob": "^7.1.6",
     "mocha": "^10.2.0",
-    "node-fetch": "^2.7.0",
     "prettier": "^3.0.3",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "node-fetch": "^2.7.0"
   }
 }
