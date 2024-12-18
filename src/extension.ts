@@ -508,14 +508,19 @@ export async function createProject(): Promise<boolean> {
 
       const isAddPrefixToNewRepo = getIsAddPrefixToNewRepo();
 
-      const getProjectSlug = (projectName: string) => {
+      const getProjectSlug = (originProjectName: string) => {
         const projectSlugPrefix = isAddPrefixToNewRepo
           ? `${getCompetitionSessionYearString(new Date())}-${getTemplateNamePrefix(state.templateName)}-`
           : "";
-        return getProjectSlugFromName(projectSlugPrefix + projectName);
+        return getProjectSlugFromName(projectSlugPrefix + originProjectName);
       };
 
-      const result = await input.showInputBox({
+      const getUniqueProjectName = (originProjectName: string) => {
+        const prefix = `${getCompetitionSessionYearString(new Date())}-${getTemplateNamePrefix(state.templateName)}`;
+        return `${originProjectName} (${prefix})`.slice(0, 62);
+      };
+
+      const originProjectName = await input.showInputBox({
         title: vscode.l10n.t("Enter the project name"),
         step: 3,
         totalSteps: 3,
@@ -523,13 +528,15 @@ export async function createProject(): Promise<boolean> {
         placeholder: vscode.l10n.t("Project name"),
         ignoreFocusOut: true,
         prompt: vscode.l10n.t("Please enter the name of the project to create"),
-        validate: async (projectName: string, inputBox: vscode.InputBox) => {
-          const projectSlug = getProjectSlug(projectName);
+        validate: async (originProjectName: string, inputBox: vscode.InputBox) => {
+          const projectSlug = getProjectSlug(originProjectName);
           let success = false;
 
+          const uniqueProjectName = getUniqueProjectName(originProjectName);
+
           try {
-            if (projectName.length < 3 || projectName.length > 62) {
-              return vscode.l10n.t("Project name must be between 3 and 62 characters");
+            if (originProjectName.length < 3) {
+              return vscode.l10n.t("Project name must be at least 3 characters");
             }
 
             if (projectSlug.length < 3 || projectSlug.length > 62) {
@@ -547,7 +554,7 @@ export async function createProject(): Promise<boolean> {
                 );
               }
             }
-            const repoByName = repositories.find(r => r.name === projectName);
+            const repoByName = repositories.find(r => r.name === uniqueProjectName);
             if (repoByName !== undefined) {
               if (state.isCreateRemote) {
                 return vscode.l10n.t("Repository with the same name already exists on remote server");
@@ -578,8 +585,8 @@ export async function createProject(): Promise<boolean> {
         shouldResume: async () => false
       });
 
-      state.projectName = result;
-      state.projectSlug = getProjectSlug(state.projectName);
+      state.projectName = getUniqueProjectName(originProjectName);
+      state.projectSlug = getProjectSlug(originProjectName);
       state.projectDir = vscode.Uri.file(path.join(projectHome, state.projectSlug));
     }
 
